@@ -8,7 +8,8 @@
 
 # Supported tags and respective `Dockerfile` links
 
-- [`latest`, `15.0`](https://github.com/aclemons/sbopkg-docker/blob/master/slackware-15.0/Dockerfile)
+- [`latest`, `slack-15.0`](https://github.com/aclemons/sbopkg-docker/blob/master/Dockerfile) - latest sbopkg installed on slackware stable
+- [`slack-current`](https://github.com/aclemons/sbopkg-docker/blob/master/Dockerfile) - latest sbopkg installed on slackware current
 
 # Quick reference (cont.)
 
