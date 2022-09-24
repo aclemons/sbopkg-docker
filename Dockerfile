@@ -11,4 +11,3 @@ RUN cd /tmp && \
   installpkg sbopkg-0.38.2-noarch-1_wsr.tgz && \
   rm sbopkg-0.38.2-noarch-1_wsr.tgz
 
-ENTRYPOINT ["su", "-c", "sbopkg"]
