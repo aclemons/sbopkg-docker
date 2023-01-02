@@ -32,8 +32,8 @@ It is maintained by Willy Sudiarto Raharjo [willysr](https://github.com/willysr)
 Running sbopkg in a docker image means you always have a clean environment. You probably want to bind mount some directories so that the the output ends up on the host. Something like this should get your started:
 
 ```sh
-mkdir -p $HOME/sbopkg
-docker run --rm -it -v $HOME/sbopkg:/var/lib/sbopkg/ aclemons/sbopkg
+mkdir -p $HOME/sbopkg/{tmp,sbopkg}
+docker run --rm -it -v $HOME/sbopkg/sbopkg:/var/lib/sbopkg/ -v $HOME/sbopkg/tmp:/tmp aclemons/sbopkg
 ```
 
 Then build as your normally would with sbopkg:
@@ -43,6 +43,10 @@ sbopkg
 ```
 
 If you want to build i586 or arm packages, you can pass `--platform linux/386` or `--platform linux/arm` in your docker run invocation.
+
+When building with a `linux/386` container on an x86\_64 host, you will probably want to invoke sbopkg with `linux32`:
+
+    $ linux32 sbopkg -b mypackage
 
 # License
 
