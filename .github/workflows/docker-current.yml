@@ -5,8 +5,8 @@ name: Slackware -current sbopkg Docker Image
   push:
     branches:
       - "master"
-    # paths:
-    #   - 'Dockerfile.current'
+    paths:
+      - 'Dockerfile.current'
 
 concurrency:
   group: docker-current-sbopkg-${{ github.head_ref || github.ref_name }}
