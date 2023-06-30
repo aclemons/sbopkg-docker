@@ -1,4 +1,4 @@
-FROM aclemons/slackware:15.0-full
+FROM aclemons/slackware:current-full
 
 # hadolint ignore=DL3003
 RUN cd /tmp && \
