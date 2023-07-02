@@ -1,3 +1,5 @@
+# syntax=docker/dockerfile:1
+
 FROM aclemons/slackware:current-full@sha256:e3235c4dd4dd212a2239323ddf817987ba3cac87065e7b48c6f454b8f2c45b7d
 
 # hadolint ignore=DL3003
@@ -8,5 +10,62 @@ RUN cd /tmp && \
     wget --progress=dot:gig https://slackbuilds.org/GPG-KEY && \
     gpg --import GPG-KEY && \
     rm GPG-KEY && sed -i '/REPO_BRANCH/s/-.*}/-current}/' /etc/sbopkg/sbopkg.conf && sed -i '/REPO_NAME/s/-.*}/-SBo-git}/' /etc/sbopkg/sbopkg.conf
+
+# Until aarch64 is officially supported on SBo, try to find DOWNLOAD_aarch64 if
+# someone has manually set one, if not, prefer the DOWNLOAD_x86_64 value if
+# there is one, otherwise fallback to DOWNLOAD.
+ARG TARGETARCH
+RUN [ "$TARGETARCH" != "arm64" ] || patch -p2 <<"eof"
+diff --git a/src/usr/sbin/sbopkg b/src/usr/sbin/sbopkg
+index 4094cf9..f7522ff 100755
+--- a/src/usr/sbin/sbopkg
++++ b/src/usr/sbin/sbopkg
+@@ -2783,17 +2783,31 @@ read_info() {
+     local i DOWNLOAD_ARCH DLSAVE MDSAVE REPLY
+     local {DOWNLOAD,MD5SUM}_$ARCH
+ 
++    if [[ $ARCH == "aarch64" ]]; then
++      local {DOWNLOAD,MD5SUM}_x86_64
++    fi
++
+     unset DOWNLOAD MD5SUM
+ 
+     # Parse the .info file
+     . $INFO
+     # Assign the proper entries to DOWNLOAD and MD5SUM.
+     DOWNLOAD_ARCH=$(eval echo \$DOWNLOAD_$ARCH)
+-    if [[ -n $DOWNLOAD_ARCH ]]; then
+-        DLSAVE=$DOWNLOAD
+-        MDSAVE=$MD5SUM
+-        DOWNLOAD=$DOWNLOAD_ARCH
+-        MD5SUM=$(eval echo \$MD5SUM_$ARCH)
++    if [[ -z $DOWNLOAD_ARCH ]] && [[ $ARCH == "aarch64" ]]; then
++        DOWNLOAD_ARCH=$(eval echo \$DOWNLOAD_x86_64)
++        if [[ -n $DOWNLOAD_ARCH ]]; then
++            DLSAVE=$DOWNLOAD
++            MDSAVE=$MD5SUM
++            DOWNLOAD=$DOWNLOAD_ARCH
++            MD5SUM=$(eval echo \$MD5SUM_x86_64)
++        fi
++    else
++        if [[ -n $DOWNLOAD_ARCH ]]; then
++            DLSAVE=$DOWNLOAD
++            MDSAVE=$MD5SUM
++            DOWNLOAD=$DOWNLOAD_ARCH
++            MD5SUM=$(eval echo \$MD5SUM_$ARCH)
++        fi
+     fi
+     # Note: on SBo pre-13.0 repositories, as well as on current non-SBo
+     # repositories, none of the above triggers. In that case, we use the
+@@ -2824,7 +2838,7 @@ read_info() {
+                     *) unknown_response ;;
+                 esac
+             done
+-            if [[ $ARCH != "x86_64" ]]; then
++            if [[ $ARCH != "x86_64" ]] && [[ $ARCH != "aarch64" ]]; then
+                 echo "DOWNLOAD=\"$DOWNLOAD_x86_64\"" >> $INFO
+                 echo "MD5SUM=\"$MD5SUM_x86_64\"" >> $INFO
+             else
+eof
 
 CMD ["su", "-"]
