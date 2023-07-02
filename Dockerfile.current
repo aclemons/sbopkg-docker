@@ -2,11 +2,11 @@ FROM aclemons/slackware:current-full@sha256:e3235c4dd4dd212a2239323ddf817987ba3c
 
 # hadolint ignore=DL3003
 RUN cd /tmp && \
-  wget --progress=dot:giga https://github.com/sbopkg/sbopkg/releases/download/0.38.2/sbopkg-0.38.2-noarch-1_wsr.tgz && \
-  installpkg sbopkg-0.38.2-noarch-1_wsr.tgz && \
-  rm sbopkg-0.38.2-noarch-1_wsr.tgz && \
-  wget --progress=dot:gig https://slackbuilds.org/GPG-KEY && \
-  gpg --import GPG-KEY && \
-  rm GPG-KEY
+    wget --progress=dot:giga https://github.com/sbopkg/sbopkg/releases/download/0.38.2/sbopkg-0.38.2-noarch-1_wsr.tgz && \
+    installpkg sbopkg-0.38.2-noarch-1_wsr.tgz && \
+    rm sbopkg-0.38.2-noarch-1_wsr.tgz && \
+    wget --progress=dot:gig https://slackbuilds.org/GPG-KEY && \
+    gpg --import GPG-KEY && \
+    rm GPG-KEY && sed -i '/REPO_BRANCH/s/-.*}/-current}/' /etc/sbopkg/sbopkg.conf && sed -i '/REPO_NAME/s/-.*}/-SBo-git}/' /etc/sbopkg/sbopkg.conf
 
 CMD ["su", "-"]
