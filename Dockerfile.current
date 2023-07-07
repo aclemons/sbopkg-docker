@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 
-FROM aclemons/slackware:current-full@sha256:fcb4949353a0074d750715d586cb2bb246b8e17ad765d8dff9ccf31dd56ca30c
+FROM aclemons/slackware:current-full@sha256:a9af26c628da26a8e9bdf92159c9b152b30a4c42462843a988cf426a6653805a
 
 # hadolint ignore=DL3003
 RUN cd /tmp && \
