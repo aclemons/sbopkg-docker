@@ -23,13 +23,13 @@ index 4094cf9..f7522ff 100755
 @@ -2783,17 +2783,31 @@ read_info() {
      local i DOWNLOAD_ARCH DLSAVE MDSAVE REPLY
      local {DOWNLOAD,MD5SUM}_$ARCH
- 
+
 +    if [[ $ARCH == "aarch64" ]]; then
 +      local {DOWNLOAD,MD5SUM}_x86_64
 +    fi
 +
      unset DOWNLOAD MD5SUM
- 
+
      # Parse the .info file
      . $INFO
      # Assign the proper entries to DOWNLOAD and MD5SUM.
