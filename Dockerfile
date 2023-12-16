@@ -1,4 +1,4 @@
-FROM aclemons/slackware:15.0-full@sha256:b8d7660a505a3113d0194b1d7d77328165e7bc4e1493f25e4783fff1436b8eb4
+FROM aclemons/slackware:15.0-full@sha256:f7552b91e61d2bea8a5263d2de9c53c7b63e09ff51dd3846fb30eb1a8906d03b
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN wget --progress=dot:giga https://github.com/sbopkg/sbopkg/releases/download/0.38.2/sbopkg-0.38.2-noarch-1_wsr.tgz && \
