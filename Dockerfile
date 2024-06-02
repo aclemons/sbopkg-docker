@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1.7.1@sha256:a57df69d0ea827fb7266491f2813635de6f17269be881f696fbfdf2d83dda33e
 
-FROM aclemons/slackware:15.0-full@sha256:292ba34c881d89f871282c57ce591af8e2e4e8c2f6afce1851424b66b941ce37
+FROM aclemons/slackware:15.0-full@sha256:f7bde9c9e7fa1d5618d233c141d748154d1d261a4c8eaf84400f9ccad50d048a
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN wget --progress=dot:giga https://github.com/sbopkg/sbopkg/releases/download/0.38.2/sbopkg-0.38.2-noarch-1_wsr.tgz && \
