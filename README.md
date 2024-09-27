@@ -8,8 +8,8 @@
 
 # Supported tags and respective `Dockerfile` links
 
-- [`latest`, `slack-15.0`](https://github.com/aclemons/sbopkg-docker/blob/master/Dockerfile) - latest sbopkg installed on slackware stable
-- [`slack-current`](https://github.com/aclemons/sbopkg-docker/blob/master/Dockerfile) - latest sbopkg installed on slackware current
+- [`latest`, `slack-15.0`](https://github.com/aclemons/sbopkg-docker/blob/master/15.0/Dockerfile) - latest sbopkg installed on slackware stable
+- [`slack-current`](https://github.com/aclemons/sbopkg-docker/blob/master/current/Dockerfile) - latest sbopkg installed on slackware current
 
 # Quick reference (cont.)
 
@@ -29,7 +29,7 @@ It is maintained by Willy Sudiarto Raharjo [willysr](https://github.com/willysr)
 
 # How to use
 
-Running sbopkg in a docker image means you always have a clean environment. You probably want to bind mount some directories so that the the output ends up on the host. Something like this should get your started:
+Running sbopkg in a docker image means you always have a clean environment. You probably want to bind mount some directories so that the output ends up on the host. Something like this should get your started:
 
 ```sh
 mkdir -p $HOME/sbopkg/{tmp,sbopkg}
