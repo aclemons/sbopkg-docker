@@ -2,9 +2,8 @@
 
 FROM aclemons/slackware:current-full@sha256:d46edacf6fa6feba092ef4658c6822605c36dc785df5a81071375b69c5ebb822
 
-SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN wget --progress=dot:giga https://github.com/sbopkg/sbopkg/releases/download/0.38.2/sbopkg-0.38.2-noarch-1_wsr.tgz && \
-    printf "c302e306523b234bb025f1a74ee66d3037cfd25f2cc6ffd5f909e4d6278b5db6  sbopkg-0.38.2-noarch-1_wsr.tgz\n" | sha256sum --strict --check && \
+    bash -o pipefail -c 'printf "c302e306523b234bb025f1a74ee66d3037cfd25f2cc6ffd5f909e4d6278b5db6  sbopkg-0.38.2-noarch-1_wsr.tgz\n" | sha256sum --strict --check' && \
     installpkg sbopkg-0.38.2-noarch-1_wsr.tgz && \
     rm sbopkg-0.38.2-noarch-1_wsr.tgz && \
     gpg --batch --keyserver keyserver.ubuntu.com --recv-keys "D3076BC3E783EE747F09B8B70368EF579C7BA3B6" && \
@@ -68,4 +67,4 @@ index 4094cf9..f7522ff 100755
              else
 eof
 
-CMD ["su", "-"]
+ENTRYPOINT ["su", "-c", "sbopkg"]
