@@ -67,4 +67,4 @@ index 4094cf9..f7522ff 100755
              else
 eof
 
-ENTRYPOINT ["su", "-c", "sbopkg"]
+ENTRYPOINT ["su", "-l", "-c", "sbopkg"]
