@@ -2,6 +2,8 @@
 
 FROM aclemons/slackware:current-full@sha256:d46edacf6fa6feba092ef4658c6822605c36dc785df5a81071375b69c5ebb822
 
+COPY current/docker-entrypoint.sh /docker-entrypoint.sh
+
 RUN wget --progress=dot:giga https://github.com/sbopkg/sbopkg/releases/download/0.38.2/sbopkg-0.38.2-noarch-1_wsr.tgz && \
     bash -o pipefail -c 'printf "c302e306523b234bb025f1a74ee66d3037cfd25f2cc6ffd5f909e4d6278b5db6  sbopkg-0.38.2-noarch-1_wsr.tgz\n" | sha256sum --strict --check' && \
     installpkg sbopkg-0.38.2-noarch-1_wsr.tgz && \
@@ -67,4 +69,4 @@ index 4094cf9..f7522ff 100755
              else
 eof
 
-ENTRYPOINT ["su", "-l", "-c", "sbopkg"]
+ENTRYPOINT ["/docker-entrypoint.sh", "sbopkg"]
