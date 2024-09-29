@@ -2,4 +2,5 @@
 
 set -e
 
-exec su -l -c "$0" -- root "$@"
+# shellcheck disable=SC2016
+exec su - root -l -c '"$0" "$@"' -- "$@"
