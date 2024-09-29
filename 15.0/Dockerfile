@@ -11,4 +11,4 @@ RUN wget --progress=dot:giga https://github.com/sbopkg/sbopkg/releases/download/
     gpg --batch --keyserver keyserver.ubuntu.com --recv-keys "D3076BC3E783EE747F09B8B70368EF579C7BA3B6" && \
     gpgconf --kill all
 
-ENTRYPOINT ["/docker-entrypoint.sh", "sbopkg"]
+ENTRYPOINT ["/docker-entrypoint.sh"]

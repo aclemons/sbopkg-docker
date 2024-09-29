@@ -8,6 +8,7 @@ on:
       - master
     paths:
       - 15.0/Dockerfile
+      - 15.0/docker-entrypoint.sh
 
 concurrency:
   group: docker-15.0-sbopkg-${{ github.head_ref || github.ref_name }}

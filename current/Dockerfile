@@ -69,4 +69,4 @@ index 4094cf9..f7522ff 100755
              else
 eof
 
-ENTRYPOINT ["/docker-entrypoint.sh", "sbopkg"]
+ENTRYPOINT ["/docker-entrypoint.sh"]
