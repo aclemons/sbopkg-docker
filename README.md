@@ -42,11 +42,22 @@ Then build as your normally would with sbopkg:
 sbopkg
 ```
 
+You can also directly invoke sbopkg/sqg:
+
+```sh
+docker run --rm -it -v $HOME/sbopkg/sbopkg:/var/lib/sbopkg/ -v $HOME/sbopkg/tmp:/tmp aclemons/sbopkg sbopkg -r
+```
+
 If you want to build i586 or arm packages, you can pass `--platform linux/386` or `--platform linux/arm` in your docker run invocation.
 
-When building with a `linux/386` container on an x86\_64 host, you will probably want to invoke sbopkg with `linux32`:
+## Keeping dependencies
 
-    $ linux32 sbopkg -b mypackage
+Since the container is clean each time you start it, you won't have your packages installed that you have previously built. If you bind mounting the directories mentioned above, you can ask the entrypoint to install any packages found in /tmp. This will emulate the behaviour of having sbopkg on your machine and all the packages installed, but will keep your local machine clean of any build artefacts etc.
+
+
+```sh
+docker run --rm -it -e SBOPKG_AUTO_INSTALL=yes -e TERSE=0 -v $HOME/sbopkg/sbopkg:/var/lib/sbopkg/ -v $HOME/sbopkg/tmp:/tmp aclemons/sbopkg sbopkg -k -B -i some-package
+```
 
 # License
 
