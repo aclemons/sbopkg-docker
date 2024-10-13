@@ -29,7 +29,7 @@ It is maintained by Willy Sudiarto Raharjo [willysr](https://github.com/willysr)
 
 # How to use
 
-Running sbopkg in a docker image means you always have a clean environment. You probably want to bind mount some directories so that the output ends up on the host. Something like this should get your started:
+Running sbopkg in a docker container means you always have a clean environment. You probably want to bind mount some directories so that the output ends up on the host. Something like this should get your started:
 
 ```sh
 mkdir -p $HOME/sbopkg/{tmp,sbopkg}
@@ -52,17 +52,16 @@ If you want to build i586 or arm packages, you can pass `--platform linux/386` o
 
 ## Keeping dependencies
 
-Since the container is clean each time you start it, you won't have your packages installed that you have previously built. If you bind mounting the directories mentioned above, you can ask the entrypoint to install any packages found in /tmp. This will emulate the behaviour of having sbopkg on your machine and all the packages installed, but will keep your local machine clean of any build artefacts etc.
-
+Since the container is clean each time you start it, you won't have your packages installed that you have previously built. If you bind mount the directories mentioned above, you can ask the entrypoint to install any packages found in /tmp. This will emulate the behaviour of having sbopkg on your machine and all the packages installed, but will keep your local machine clean of any build artefacts etc.
 
 ```sh
 docker run --rm -it -e SBOPKG_AUTO_INSTALL=yes -e TERSE=0 -v $HOME/sbopkg/sbopkg:/var/lib/sbopkg/ -v $HOME/sbopkg/tmp:/tmp aclemons/sbopkg sbopkg -k -B -i some-package
 ```
 
-# License
+# Licence
 
-The Docker image creation scripts contained under the repository sbopkg-docker are licensed under the MIT license.
+The Docker image creation scripts contained under the repository sbopkg-docker are licensed under the MIT licence.
 
-As with all Docker images, these likely also contain other software which may be under other licenses (such as Bash, etc from the base distribution, along with any direct or indirect dependencies of the primary software being contained).
+As with all Docker images, these likely also contain other software which may be under other licences (such as Bash, etc from the base distribution, along with any direct or indirect dependencies of the primary software being contained).
 
-As for any pre-built image usage, it is the image user's responsibility to ensure that any use of this image complies with any relevant licenses for all software contained within.
+As for any pre-built image usage, it is the image user's responsibility to ensure that any use of this image complies with any relevant licences for all software contained within.
