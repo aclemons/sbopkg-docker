@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1.13.0@sha256:426b85b823c113372f766a963f68cfd9cd4878e1bcc0fda58779127ee98a28eb
 
-FROM aclemons/slackware:15.0-full@sha256:eb98c1e5813138f6ffd7017169e6e8dbd47dcaa4e2021b3e06d125582f59f8b6
+FROM aclemons/slackware:15.0-full@sha256:24ffec78186e188cd91484f69ead4beb98d7c46c8609341e1d54cbc956fa82e6
 
 ARG TARGETARCH
 RUN --mount=type=bind,source=15.0/docker-entrypoint.sh,target=/tmp/docker-entrypoint.sh \
