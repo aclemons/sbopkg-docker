@@ -21,7 +21,7 @@
 
 # What is sbopkg?
 
-Sbopkg is a command-line and dialog-based tool to synchronize with the SlackBuilds.org ("SBo") repository, a collection of third-party SlackBuild scripts to build Slackware packages.
+Sbopkg is a command-line and dialog-based tool to synchronise with the SlackBuilds.org ("SBo") repository, a collection of third-party SlackBuild scripts to build Slackware packages.
 
 It is maintained by Willy Sudiarto Raharjo [willysr](https://github.com/willysr).
 

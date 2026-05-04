@@ -1,8 +1,13 @@
----
 name: Mirror Sync
+
 on:
   workflow_dispatch:
   push:
+
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: false
+
 jobs:
   codeberg:
     runs-on: ubuntu-24.04
