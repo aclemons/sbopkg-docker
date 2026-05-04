@@ -47,4 +47,5 @@ jobs:
         run: |
           # shellcheck source=/dev/null
           . ~/.pre-commit-venv/bin/activate
-          pre-commit run --all-files --colour=always --show-diff-on-failure
+          # spellchecker:ignore-next-line
+          pre-commit run --all-files --color=always --show-diff-on-failure
