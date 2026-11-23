@@ -34,7 +34,7 @@ repos:
       - id: actionlint-docker
 
   - repo: https://github.com/zizmorcore/zizmor-pre-commit
-    rev: cef8b8350da46d8114c7e6b7272aebdccdf193ce # frozen: v1.30.0
+    rev: c7d31dc612dffdd4d3b2f2b88b9660d3ab057ee8 # frozen: v1.33.1
     hooks:
       - id: zizmor
 
